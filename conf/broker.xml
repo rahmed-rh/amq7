@@ -221,6 +221,11 @@ under the License.
                <queue name="demoQueue" />
             </anycast>
          </address>
+        <address name="happyQueue">
+            <anycast>
+               <queue name="happyQueue" />
+            </anycast>
+         </address>
          <address name="demoTopic"/>
 
       </addresses>
