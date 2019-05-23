@@ -2,10 +2,28 @@
 
 SRCCONF=/tmp/src/conf
 
+function swapVars() { 
+  sed -i "s/\${BROKER_IP}/$BROKER_IP/g" $1
+  sed -i "s/\${AMQ_NAME}/$AMQ_NAME/g" $1
+  sed -i "s/\${AMQ_ROLE}/$AMQ_ROLE/g" $1
+  sed -i "s/\${AMQ_STORAGE_USAGE_LIMIT}/$AMQ_STORAGE_USAGE_LIMIT/g" $1
+  sed -i "s/\${AMQ_CLUSTER_USER}/$AMQ_CLUSTER_USER/g" $1
+  sed -i "s/\${AMQ_CLUSTER_PASSWORD}/$AMQ_CLUSTER_PASSWORD/g" $1
+
+	sed -i "s/\${AMQ_KEYSTORE_TRUSTSTORE_DIR}/$AMQ_KEYSTORE_TRUSTSTORE_DIR/g" $1
+	sed -i "s/\${AMQ_KEYSTORE}/$AMQ_KEYSTORE/g" $1
+	sed -i "s/\${AMQ_KEYSTORE_PASSWORD}/$AMQ_KEYSTORE_PASSWORD/g" $1
+}
+
+
 
 if [ -d ${SRCCONF} ]; then
+  echo "Swap env vars into configuration file"
+  swapVars ${SRCCONF}/conf/broker.xml
+
   echo "Copying config files from project..."
   cp -v ${SRCCONF}/* $AMQ_HOME/conf/
+  
 fi
 
 exit 0
