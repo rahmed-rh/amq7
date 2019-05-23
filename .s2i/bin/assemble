@@ -19,7 +19,7 @@ function swapVars() {
 
 if [ -d ${SRCCONF} ]; then
   echo "Swap env vars into configuration file"
-  swapVars ${SRCCONF}/conf/broker.xml
+  swapVars ${SRCCONF}/broker.xml
 
   echo "Copying config files from project..."
   cp -v ${SRCCONF}/* $AMQ_HOME/conf/
